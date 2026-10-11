@@ -1,0 +1,21 @@
+{
+  "name": "sexta-hq",
+  "version": "0.2.0",
+  "private": true,
+  "description": "S.E.X.T.A. - assistente serverless baseado em Claude",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
+    "build": "tsc",
+    "test": "tsc && node --test \"tests/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vercel/node": "^3.2.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,23 @@
+name: Heartbeat S.E.X.T.A.
+
+# Equivalente em nuvem do "/loop 30m": roda no GitHub Actions, sem usar sua maquina.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar saude do deploy
+        env:
+          SEXTA_URL: ${{ secrets.SEXTA_URL }}
+        run: |
+          if [ -z "$SEXTA_URL" ]; then
+            echo "Secret SEXTA_URL nao configurado (ex.: https://seu-projeto.vercel.app)"; exit 1
+          fi
+          echo "[$(date -u +%FT%TZ)] Verificando $SEXTA_URL/api/health"
+          curl -fsS --retry 3 --max-time 20 "$SEXTA_URL/api/health" | tee health.json
+          echo
+          echo "[$(date -u +%FT%TZ)] Heartbeat OK"
