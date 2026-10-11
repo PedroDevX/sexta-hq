@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod",
-    "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "test": "tsc && node --test \"tests/*.test.mjs\""
   },
   "devDependencies": {
